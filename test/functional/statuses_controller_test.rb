@@ -17,13 +17,35 @@ class StatusesControllerTest < ActionController::TestCase
     assert_redirected_to new_user_session_path
   end
 
-  test "should login before post status" do 
+  test "should render new page when logged in" do 
     sign_in users(:kinal)
     get :new
+    assert_response :success   
+  end
+
+  test "should be logged in to post status" do 
+    post :create, status: { content: "Hello" }
+    assert_response :redirect
+    assert_redirected_to new_user_session_path
+  end
+
+  test "should be logged in to view edit page" do 
+    sign_in users(:kinal)
+    get :edit, id: @status
     assert_response :success
   end
 
+  test "should be logged in to update status" do 
+    sign_in users(:kinal)
+
+    put :update, id: @status, status: { content: "Hello" }
+    assert_response :redirect
+    assert_redirected_to status_path
+  end
+
   test "should create status" do
+    sign_in users(:kinal2)
+
     assert_difference('Status.count') do
       post :create, status: { content: @status.content }
     end
@@ -37,11 +59,15 @@ class StatusesControllerTest < ActionController::TestCase
   end
 
   test "should get edit" do
+    sign_in users(:kinal2)
+
     get :edit, id: @status
     assert_response :success
   end
 
   test "should update status" do
+    sign_in users(:kinal2)
+    
     put :update, id: @status, status: { content: @status.content }
     assert_redirected_to status_path(assigns(:status))
   end
