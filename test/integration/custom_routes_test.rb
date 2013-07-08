@@ -20,4 +20,9 @@ class CustomRoutesTest < ActionDispatch::IntegrationTest
   	get 'register'
   	assert_response :success
   end
+
+  test "should open the profile_name by id" do 
+    get '/kawaeirina'
+    assert_response :success
+  end
 end

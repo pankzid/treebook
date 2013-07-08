@@ -1,0 +1,11 @@
+<h2><%= @user.full_name %> Profile</h2>
+<div class="row">
+	<div class="span4">
+		<%= image_tag('pkd.jpg') %>
+	</div>
+	<div class="span8">
+		<div class="well">
+			<%= render @statuses %>
+		</div>
+	</div>
+</div>
