@@ -3,7 +3,9 @@
 one:
   content: MyText
   user: kinal
+  user_id: 1
 
 two:
   content: MyText
   user: kinal2
+  user_id: 2

@@ -22,7 +22,7 @@ class CustomRoutesTest < ActionDispatch::IntegrationTest
   end
 
   test "should open the profile_name by id" do 
-    get '/kawaeirina'
+    get '/kinaldevi'
     assert_response :success
   end
 end
